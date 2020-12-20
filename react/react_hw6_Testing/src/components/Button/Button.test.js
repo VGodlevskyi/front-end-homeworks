@@ -15,7 +15,7 @@ afterEach(() => {
     container = null;
 });
 
-it('Testing render of button ', () => {
+it('Testing render of button - done ', () => {
     const onClick = jest.fn();
 
     act(() => {

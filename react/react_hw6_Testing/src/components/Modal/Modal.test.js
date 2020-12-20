@@ -18,7 +18,7 @@ afterEach(() => {
     container = null;
 });
 
-it('Modal is rendered correctly', () => {
+it('Testing render of Modal - done', () => {
     const onClick = jest.fn();
     const actions =
         <div>
