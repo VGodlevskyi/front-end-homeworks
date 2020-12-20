@@ -1,0 +1,6 @@
+.product-list {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: 1fr minmax(200px, 400px);
+  grid-gap: 10px;
+}

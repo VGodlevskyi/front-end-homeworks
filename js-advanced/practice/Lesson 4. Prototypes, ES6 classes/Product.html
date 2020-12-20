@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Product {
+            constructor(id, name, price) {
+                this._id = id;
+                this.name = name;
+                this.price = price;
+            }
+
+            get id() {
+                return this._id;
+            }
+
+            makeDiscount(count) {
+                this.price -= count;
+                return this.price;
+            }
+            print() {
+                console.log(this.prepareInfo())
+            }
+
+            prepareInfo() {
+                return `| ID: ${this.id} || NAME: ${this.name} || PRICE: ${this.price} |`
+            }
+
+            static compare(a, b) {
+                return a.price - b.price;
+            }
+
+        }
+
+        // const productOne = new Product(1, 'Banana', 60);
+        // console.log(productOne.id)
+        // productOne.id = 10
+        // console.log(productOne.id);
+        // console.log(productOne.makeDiscount(10))
+        // productOne.print();
+        // const list = [new Product(1, 'Tomato', 100), new Product(2, 'Apple', 20), new Product(3, 'Orange', 50)];
+        // list.sort(Product.compare);
+        // console.log(list)
+
+
+
+
+
+        class Book extends Product {
+            constructor(...args) {
+                super(...args);
+                const [, , , authors, date] = args;
+                this.authors = authors;
+                this.date = date;
+            }
+
+            prepareInfo() {
+                return `${super.prepareInfo()}| AUTHORS: ${this.authors} || DATE: ${this.date} |`
+            }
+        }
+
+        const book = new Book(1, 'Anna Karenina', 50, ['Lev', 'Tolstoi'], (new Date().toLocaleDateString()))
+        console.log(book)
+        book.print();
+    </script>
+</body>
+
+</html>

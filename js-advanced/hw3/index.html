@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Godlevskyi_js-adv_hw3</title>
+</head>
+<body>
+<script>
+    class Employee {
+        constructor(name, age, salary) {
+            this.name = name;
+            this.age = age;
+            this.salary = salary;
+        }
+
+        get nameInfo() {
+            return this.name
+        }
+
+        get ageInfo() {
+            return this.age
+        }
+
+        get salaryInfo() {
+            return this.salary
+        }
+
+        set nameInfo(name) {
+            this.name = name;
+        }
+
+        set ageInfo(age) {
+            this.age = age;
+        }
+
+        set salaryInfo(salary) {
+            this.salary = salary;
+        }
+    }
+
+    class Programmer extends Employee {
+        constructor(name, age, salary, lang) {
+            super(name, age, salary);
+            this.lang = lang;
+        }
+
+        get salaryInfo() {
+            return this.salary * 3
+        }
+
+    }
+
+    const programmer1 = new Programmer("Natali", 28, 2000, {
+        language1: "english",
+        language2: "ukrainian",
+        language3: "polish"
+    });
+    const programmer2 = new Programmer("John", 45, 5000, {
+        language1: "english",
+        language2: "russian",
+        language3: "spain"
+    });
+    const programmer3 = new Programmer("Peter", 39, 3000, {
+        language1: "italian",
+        language2: "ukrainian",
+        language3: "franch"
+    });
+    console.log(programmer1);
+    console.log(programmer2);
+    console.log(programmer3);
+
+</script>
+</body>
+</html>

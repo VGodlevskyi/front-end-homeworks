@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.page-head {
+    padding: 400px 0 110px 0;
+}
+
+.page-head-bg {
+    background: url("../img/main-top-background.png");
+    background-size: cover;
+}
+
+.page-head-title {
+    font-size: 48px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.page-head-subtitle {
+    font-size: 18px;
+    color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

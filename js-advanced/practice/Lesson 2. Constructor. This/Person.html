@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        function Person(name = 'John', surname = 'Doe') {
+            this.name = name;
+            this.surname = surname;
+        }
+
+        Person.prototype.getFullName = function () {
+            return `${this.name} ${this.surname}`;
+        }
+
+        Person.prototype.changeFullName = function (fullname) {
+            const arr = fullname.split(' ');
+            if (arr.length !== 2) {
+                console.log('Err. Data is not valid.')
+            } else {
+                const [
+                    name,
+                    surname
+                ] = arr;
+                this.name = name;
+                this.surname = surname;
+            }
+        };
+
+        const first = new Person();
+        console.log(first)
+        console.log(first.getFullName());
+        first.changeFullName('Sara Connor');
+        console.log(first.getFullName());
+    </script>
+</body>
+
+</html>

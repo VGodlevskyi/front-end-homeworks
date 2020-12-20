@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Godlevskyi_js-adv_hw5</title>
+</head>
+<body>
+
+<script>
+
+    function createElDom(tag, class1, name, textContent = '') {
+        name = document.createElement(tag);
+        name.textContent = textContent;
+        name.className = class1;
+        document.body.append(name);
+    }
+
+    function handlerElemForUrl(element, event, url) {
+        const currentElement = document.querySelector('.btn');
+        currentElement.addEventListener(event, function () {
+            getAdress(url);
+        });
+    }
+
+    async function getIP(url) {
+        const res = await fetch(url);
+        const data = await res.json();
+        const ip = data.ip;
+        return ip;
+    }
+
+    async function getAdress(url) {
+        const ip = await getIP(url);
+        const res = await fetch(`http://ip-api.com/json/${ip}?fields=continent,country,regionName,city,district`);
+        const data = await res.json();
+        const adressIp = document.querySelector('.list')
+        adressIp.innerHTML = `
+                            <li>Continent: ${data.continent}</li>
+                            <li>Country: ${data.country}</li>
+                            <li>Region: ${data.regionName}</li>
+                            <li>City: ${data.city}</li>
+                            <li>District: ${data.district}</li>`
+    }
+
+    createElDom('button', 'btn', 'btnGetIP', 'Вычислить по IP');
+    createElDom('ul', 'list', 'adressIp');
+    handlerElemForUrl('btnGetIP', "click", 'https://api.ipify.org/?format=json');
+
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+.menu-mobile {
+  display: none;
+  @media (man-width 1200px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 330px;
+    height: 30px;
+    background-color: aliceblue;
+    &-hr {
+      @include menu-hr;
+      &::after,
+      &::before {
+        display: block;
+        content: "";
+        @include menu-hr;
+      }
+    }
+  }
+}
+.nav-bar{
+  display: flex;
+
+}

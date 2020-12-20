@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        function List(parentEl) {
+            this.notes = [];
+            this.listEl = document.createElement('ol');
+            parentEl.appendChild(this.listEl);
+        };
+
+        List.prototype.addNote = function (note) {
+            this.notes.push(note);
+
+            const listItemEl = document.createElement('li');
+            listItemEl.textContent = note;
+
+            this.listEl.appendChild(listItemEl);
+        }
+
+        List.prototype.removeNote = function (index) {
+            this.notes.splice(index - 1, 1);
+
+            this.listEl.children[index - 1].remove();
+        };
+
+        const firstList = new List(document.body);
+        const secondList = new List(document.body);
+    </script>
+</body>
+
+</html>

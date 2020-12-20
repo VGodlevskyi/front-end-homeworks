@@ -1,0 +1,16 @@
+@mixin transform($property) {
+  -webkit-transform: $property;
+  -ms-transform: $property;
+  transform: $property;
+}
+@mixin grid($column-count, $gap, $row-height) {
+  display: grid;
+  grid-gap: $gap;
+  grid-template-columns: repeat($column-count, 1fr);
+
+  @if $row-height {
+    grid-auto-rows: $row-height;
+  } @else {
+    grid-auto-rows: 40px;
+  }
+}

@@ -1,0 +1,29 @@
+.menu {
+	@extend %list-none;
+
+	// @include transform(translateX(30px));
+	// @include grid(3, 10px, false);
+
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+
+	background-color: #f0fff0;
+}
+.menu__item {
+	border-bottom: 2px solid #000;
+	display: flex;
+}
+
+.menu__link {
+	font-size: 18px;
+	font-weight: 700;
+	color: green;
+	&--active {
+		margin: auto;
+		// text-transform: uppercase;
+	}
+}
+.list2 {
+	@extend %list-none;
+}

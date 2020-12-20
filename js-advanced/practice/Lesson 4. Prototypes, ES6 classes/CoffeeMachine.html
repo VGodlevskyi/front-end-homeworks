@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Создать класс Machine
+        // аргументы:
+        // - power (Number | Мощность аппарата)
+        // свойства:
+        // - isEnabled (Bool | Статус работы)
+        // - power (Number | Мощность)
+        // методы:
+        // - turnOn()
+        //   меняет свойство isEnabled на true
+        // - turnOff()
+        //   меняет свойство isEnabled на false
+
+        class Machine {
+            constructor(power = 0) {
+                this.isEnabled = false;
+                this.power = power;
+            }
+
+            turnOn() {
+                return this.isEnabled = true
+            }
+            turnOff() {
+                return this.isEnabled = false
+            }
+        }
+
+        // Создать класс PureCoffeeMachine
+        // Класс должен наследовать методы и свойства Machine
+        // Aргументы:
+        // - power (см Machine)
+        // - coffeeCapacity (Number | емкость бака с кофе)
+        // - milkCapacity (Number | емкость бака с молоком)
+        // Методы: 
+        // - makeCoffee()
+        //   -- Запускает создание кофе и возвращает в консоль 'Your coffee is ready.' 
+        //      спустя 3 секунды
+        //   -- Во время готовки кофе, нельзя запустить приготовление следующего,
+        //      необходимо сообщать "Sorry, machine is busy now"
+        //   -- Если машина выключена, сообщать "Turn On machine first"
+        //      и не готовить кофе
+        //   -- При готовке кофе, необходимо тратить ресурсы (1 coffee, 1 milk)
+        //   -- При недостатке ресурсов на готовку, сообщать "Sorry, resources are out"
+        //   -- При выключении машины, кофе должен перестать готовится
+
+        class PureCoffeeMachine extends Machine {
+            constructor(power, coffeeCapacity, milkCapacity) {
+                super(power);
+                this.coffeeCapacity = coffeeCapacity;
+                this.milkCapacity = milkCapacity;
+                this.processTimer = null;
+            }
+
+            makeCoffee() {
+                if (this.checkForAvailability()) {
+                    this.coffeeCapacity--;
+                    this.milkCapacity--;
+                    this.processTimer = setTimeout(() => {
+                        console.log('Your coffee is ready.');
+                        this.processTimer = null
+                    }, 3000)
+                }
+            }
+
+            checkForAvailability() {
+                if (!this.isEnabled) return console.log("Turn On machine first")
+                if (this.processTimer) return console.log("Sorry, machine is busy now")
+                if (!this.coffeeCapacity || !this.milkCapacity) return console.log("Sorry, resources are out")
+                return true;
+            }
+
+            turnOff() {
+                super.turnOff();
+                clearTimeout(this.processTimer);
+                this.processTimer = null;
+            }
+        }
+
+        const cm = new PureCoffeeMachine(1000, 2, 10);
+
+        // Создать класс MediumCoffeeMachine
+        // класс должен наследовать все методы и свойства из PureCoffeeMachine
+        // аргументы:
+        // ...из PureCoffeeMachine
+        // - coffeeList (Array of Objects | [{name:'Late', coffee: 1, milk: 2}])
+        // Методы
+        // - getList()
+        //   Выводит в консоль нумерованный список видов кофе, доступных для приготовления
+        //   `
+        //     1. Late
+        //     2. Espresso
+        //   `
+        // Модификации
+        // - makeCoffee()
+        //   Должен принимать Number или String
+        //     - При Number должен готовить вид кофе по номеру в соответствии с getList() 
+        //     - При String должен готовить вид кофе по name из coffeeList
+        //     - При невалидном аргументе выводить 'Sorry, we didnt have coffee like that'
+        //   Ресурсы потребляются в зависимости от типа кофе
+
+        // Доп. условия:
+        // - У типов кофе должно появится поле price (Number) со значением стоимости
+        // - makeCoffee() должен дополнительно принимать число которое будет являтся
+        //   суммой оплаты от "клиента".
+        //   Если сумма меньше стоимости, то выводить ошибку
+        //   Если сумма больше, то вместе с сообщении о готовности кофе, выводить сумму сдачи
+        // - Хранить сумму заработанных денег
+        // - Создать метод rechange(), который восполняет кол-во ресурсов до максимума
+        //   и снимает с баланса сумму, равную недостатку кофе и молока 
+        //   (coffee 1 point = 2$)
+        //   (milk 1 point = 1$)
+
+        class MediumCoffeeMachine extends PureCoffeeMachine {
+            constructor(...args) {
+                super(...args);
+                const [, , , cofeeList] = args;
+
+                this.cofeeList = cofeeList;
+            }
+
+            getList() {
+                let list = this.cofeeList.reduce((acc, {
+                    name
+                }, index) => acc += `${index + 1}.${name}\n`, '');
+                console.log(list)
+            }
+
+            makeCoffee(coffeeType) {
+                if (this.checkForAvailability()) {
+                    let coffeeData;
+                    if (typeof coffeeType === 'number') {
+                        coffeeData = this.cofeeList[coffeeType - 1];
+                    }
+                    if (typeof coffeeType === 'string') {
+                        coffeeData = this.cofeeList.find(({
+                            name
+                        }) => name === coffeeType)
+                    }
+                    const {
+                        name,
+                        coffee,
+                        milk
+                    } = coffeeData;
+                    this.coffeeCapacity -= coffee;
+                    this.milkCapacity -= milk;
+                    this.processTimer = setTimeout(() => {
+                        console.log(`Your ${name} is ready.`);
+                        this.processTimer = null
+                    }, 3000)
+                }
+            }
+        }
+
+        const medCofMach = new MediumCoffeeMachine(1000, 15, 15, [{
+            name: 'Espresso',
+            coffee: 1,
+            milk: 0
+        }, {
+            name: 'Late',
+            coffee: 1,
+            milk: 2
+        }])
+
+        console.log(medCofMach)
+    </script>
+</body>
+
+</html>

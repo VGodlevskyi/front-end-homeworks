@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // function User(name, age, isAdmin = false) {
+        //     const newUser = {
+        //         name,
+        //         age
+        //     }
+        //     if (isAdmin) newUser.isAdmin = true;
+        //     return newUser
+        // }
+
+
+        function User(name, surname, age) {
+            this.name = name;
+            this.surname = surname;
+            this.age = age;
+        }
+
+        User.prototype.getFullName = function () {
+            alert(`${this.name} ${this.surname}`)
+        }
+
+        const user = new User('John', "Smith", 22);
+        const user2 = new User('Sara', "Connor", 22);
+
+        // console.log(user, user2);
+
+        // 1. create constructor Counter;
+        // 2. Counter must have own property "value" (default 0);
+        // 3. Counter must have protototype methods 'increment' & 'decrement';
+        // 4. On creation take 'step' argument which will be step for increment & decrement
+
+        function Counter(step) {
+            this.value = 0;
+            this.step = step;
+        }
+
+        Counter.prototype.increment = function () {
+            this.value += this.step;
+            return this;
+        }
+        Counter.prototype.decrement = function () {
+            this.value -= this.step;
+        }
+
+        const counter = new Counter(2);
+        // (counter.increment()).increment().increment().value
+    </script>
+
+</body>
+
+</html>

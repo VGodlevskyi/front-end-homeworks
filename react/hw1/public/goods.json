@@ -1,0 +1,72 @@
+[
+  {
+    "name": "iPhone 11 128GB Red",
+    "price": "21999",
+    "url": "https://stylus.ua/thumbs/378x378/c9/41/1217696.png",
+    "art": "542395",
+    "color": "red"
+  },
+  {
+    "name": "iPhone 11 128GB Green",
+    "price": "22999",
+    "url": "https://stylus.ua/thumbs/378x378/2c/61/1217691.png",
+    "art": "542391",
+    "color": "green"
+  },
+  {
+    "name": "iPhone 11 128GB Yellow",
+    "price": "22499",
+    "url": "https://stylus.ua/thumbs/378x378/ea/72/1217698.png",
+    "art": "542392",
+    "color": "yellow"
+  },
+  {
+    "name": "iPhone 11 128GB Purple",
+    "price": "21999",
+    "url": "https://stylus.ua/thumbs/378x378/89/27/1217697.png",
+    "art": "542393",
+    "color": "purple"
+  },
+  {
+    "name": "iPhone 11 128GB Black",
+    "price": "21999",
+    "url": "https://stylus.ua/thumbs/378x378/0f/71/1217699.png",
+    "art": "542390",
+    "color": "black"
+  },
+  {
+    "name": "Samsung Galaxy S10 Lite 6/128Gb Dual Blue G770F",
+    "price": "12999",
+    "url": "https://stylus.ua/thumbs/378x378/75/8b/1328206.jpeg",
+    "art": "578035",
+    "color": "blue"
+  },
+  {
+    "name": "Samsung Galaxy S10 Lite 6/128Gb Dual Black G770F",
+    "price": "13299",
+    "url": "https://stylus.ua/thumbs/378x378/eb/b3/1328213.jpeg",
+    "art": "578036",
+    "color": "black"
+  },
+  {
+    "name": "Samsung Galaxy S10 8/128GB Dual Prism Black",
+    "price": "16499",
+    "url": "https://stylus.ua/thumbs/378x378/45/f9/1007679.jpeg",
+    "art": "459986",
+    "color": "black"
+  },
+  {
+    "name": "Samsung Galaxy S10 8/128GB Dual Red",
+    "price": "16999",
+    "url": "https://stylus.ua/thumbs/378x378/97/a7/1180862.jpeg",
+    "art": "519981",
+    "color": "red"
+  },
+  {
+    "name": "Samsung Galaxy S10 8/128GB Dual Prism Green",
+    "price": "17999",
+    "url": "https://stylus.ua/thumbs/378x378/67/94/1007655.jpeg",
+    "art": "459987",
+    "color": "green"
+  }
+]

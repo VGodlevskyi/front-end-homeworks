@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warrior</title>
+</head>
+
+<body>
+    <script>
+        function Warrior(name) {
+            this.name = name;
+            this.health = 100;
+            this.isAlive = true;
+            this.power = 10;
+        }
+
+        Warrior.prototype.heal = function (points = 100) {
+            if (!isNaN(points)) {
+                this.health += points;
+                if (this.health > 100) {
+                    this.health = 100;
+                };
+            }
+            return this.health;
+        }
+
+        Warrior.prototype.takeDamage = function (damage) {
+            if (!isNaN(damage)) {
+                this.health -= damage;
+                this.health = Math.max(0, this.health);
+                if (this.health === 0) {
+                    this.isAlive = false;
+                }
+            }
+            return this.health;
+        }
+
+        Warrior.prototype.attack = function () {
+            return randomInteger(0, this.power)
+        }
+
+        Warrior.prototype.defence = function (damage) {
+            if (!isNaN(damage)) {
+                const isPassHit = !!randomInteger(0, 1);
+                if (isPassHit) {
+                    this.takeDamage(damage);
+                }
+            }
+            return this.health;
+        }
+
+        // Round 1
+        // Создать конструктор Warrior
+        // Конструктор должен возвращать обьект со свойсвами:
+        // -- name (Необходимо получить из аргумента при ините)
+        // -- health (По-умолчанию равен 100)
+
+        // Tests round 1:
+        // const warriorOne = new Warrior('Konnan');
+        // console.log(warriorOne) // {name: 'Konnan', health: 100}
+
+        // Round 2
+        // Добавить метод heal()
+        // -- При получении аргумента(число) должен лечить* на указанное кол-во
+        // -- При отсутсвии агрумента необходимо лечить полностью
+        // -- Максимальный уровень жизней(health) равен 100
+        // -- Метод должен возвращать текущее кол-во жизней
+        // Добавить метод takeDamage()
+        // -- Уменьшает кол-во жизней на число переданное в аргументе
+        // -- При нечисленном значении аргумента, не наносить урон
+        // -- Метод должен возвращать текущее кол-во жизней
+        // -- Минимальное кол-во жизней 0
+
+        // * восстанавливать health значение инстанса
+
+        // Tests round 2:
+        // console.log(warriorOne.heal(), 100) // 100
+        // console.log(warriorOne.takeDamage(), 100) // 100
+        // console.log(warriorOne.takeDamage(45), 55) // 55
+        // console.log(warriorOne.heal(10), 65) // 65
+        // console.log(warriorOne.heal(), 100) // 100
+        // console.log(warriorOne.takeDamage(150), 0) // 0
+        // console.log(warriorOne.heal(120), 100) // 100
+
+        // Round 3
+        // Добавить свойство isAlive в инстанс (по-умолчанию true)
+        // Добавить свойство power в инстанс (по-умолчанию 10)
+        // Добавить метод attack()
+        // -- Метод должен возвращать случайное число в промежутке от 0 до power
+        // Добавить метод defence()
+        // -- Метод должен принимать число урона и в 50% наносить урон(takeDamage);
+        // -- Метод должен возращать кол-во жизней 
+        // Обновить метод takeDamage()
+        // -- При уровне жизни равной 0 менять isAlive на false
+
+        // Tests round 3:
+        // console.log(warriorOne) // { name: 'Konnan', health: 100, power: 10, isAlive: true}
+        // console.log(warriorOne.attack()) // rand num from 0 to 10
+        // console.log(warriorOne.attack()) // rand num from 0 to 10
+
+        // console.log(warriorOne.defence(10)) // dmg taken or not in 50%
+        // console.log(warriorOne.defence(10)) // dmg taken or not in 50%
+        // console.log(warriorOne.defence(10)) // dmg taken or not in 50%
+        // console.log(warriorOne.defence(10)) // dmg taken or not in 50%
+        // console.log(warriorOne.defence(10)) // dmg taken or not in 50%
+
+        // console.log(warriorOne.isAlive) // very big chance for 'false';
+
+        // Создать конструктор Arena
+        // При ините должен принимать обязательных 2 аргумента warriorOne, warriorTwo
+        // Инстанс должен иметь свойства  warriorOne, warriorTwo где будет хранить ссылки
+        //  на воинов текущего сражения.
+        // Инстанс должен иметь свойство isFight (по-умолчанию false)
+        // Конструктор должен иметь метод start()
+        // -- меняет значение isFight на true, если isFight равен false
+        //    иначе вывод alert('Fight is already running')
+        // Конструктор должен иметь метод nextRound()
+        // -- метод должен поочередно столкнуть в битве warriorOne и warriorTwo
+        // -- вывести кол-во урона которое нанес каждый, одним сообщением в консоль
+        // -- если один из воинов по истечению раунда умер - вывести alert с именем победителя
+        //    и изменить свойтво isFight на false. Если умрут оба - ничья.
+        // -- При попытке вызова с isFight == false выводить alert('Fight is not started')
+
+        function Arena(warriorOne, warriorTwo) {
+            this.warriorOne = warriorOne;
+            this.warriorTwo = warriorTwo;
+            this.isFight = false;
+        }
+
+        Arena.prototype.start = function () {
+            if (this.isFight) {
+                alert('Fight is already running')
+            } else {
+                this.isFight = true;
+            }
+        }
+
+        Arena.prototype.nextRound = function () {
+            if (this.isFight) {
+                const firstWarriorDealsDamage = this.warriorOne.attack();
+                const secondWarriorDealsDamage = this.warriorTwo.attack();
+                const secondWarriorLeftHPAfterDefence = this.warriorTwo.defence(firstWarriorDealsDamage);
+                const firstWarriorLeftHPAfterDefence = this.warriorOne.defence(secondWarriorDealsDamage);
+
+                console.log(`
+                    First warrior ${this.warriorOne.name} try to deal ${firstWarriorDealsDamage} of damage,
+                    Second warrior ${this.warriorTwo.name} try to deal ${secondWarriorDealsDamage} of damage,
+                    First warrior left ${firstWarriorLeftHPAfterDefence} health,
+                    Second warrior left ${secondWarriorLeftHPAfterDefence} health,
+                `)
+
+                if (!this.warriorOne.isAlive && !this.warriorTwo.isAlive) {
+                    alert('Mothers of both are crying');
+                    this.isFight = false;
+                } else {
+                    if (!this.warriorOne.isAlive) {
+                        alert(`Second warrior ${this.warriorTwo.name} wins`)
+                        this.isFight = false;
+                    }
+                    if (!this.warriorTwo.isAlive) {
+                        alert(`First warrior ${this.warriorOne.name} wins`);
+                        this.isFight = false;
+                    }
+                }
+            } else {
+                alert('Fight is not started')
+            }
+        }
+
+        const firstFight = new Arena(new Warrior('Konnan'), new Warrior('Neo'))
+        console.log(firstFight)
+
+
+
+
+
+
+
+
+
+
+
+
+        function randomInteger(min, max) {
+            // получить случайное число от (min-0.5) до (max+0.5)
+            let rand = min - 0.5 + Math.random() * (max - min + 1);
+            return Math.round(rand);
+        }
+    </script>
+</body>
+
+</html>

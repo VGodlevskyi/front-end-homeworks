@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .walker {
+            width: 100px;
+            height: 100px;
+            background-image: url('https://www.flaticon.com/svg/static/icons/svg/875/875115.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            transition: all 1s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        // Создать класс Walker
+        // свойства:
+        // - element (DOM элемент, добавленный на страницу)
+        // - step (Number | значение величины шага)
+        // аргументы:
+        // - parentEL (DOM элемент в котором отрендерится element при ините)
+        // - step (Number | значение свойства step | default = 10)
+        // методы:
+        // - walk()
+        // --- Сдвигает element вправо на значение step в пикселях (translateX)
+        // --- *Сделать возможность цепочку вызовов ( *.walk().walk().walk() )
+
+        class Walker {
+            constructor(parentEL, step = 10) {
+                this.element = document.createElement('div');
+                this.element.className = 'walker';
+                this.step = step;
+                this.distance = 0;
+
+                parentEL.appendChild(this.element)
+            }
+            walk() {
+                // const isAlreadyMoved = !!this.element.style.transform;
+                // if (!isAlreadyMoved) {
+                //     this.element.style.transform = `translateX(${this.step}px)`
+                // } else {
+                //     let prevState = this.element.style.transform;
+                //     prevState = +prevState.substring(11).slice(0, -3);
+                //     this.element.style.transform = `translateX(${prevState + this.step}px)`
+                // }
+                this.moveX(this.step)
+
+                return this;
+            }
+
+            moveX(distance) {
+                this.distance += distance;
+                this.element.style.transform = `translateX(${this.distance}px)`;
+            }
+        }
+
+        const walker = new Walker(document.body, 30);
+        const walker2 = new Walker(document.body, 30);
+        setTimeout(() => walker.walk(), 1000)
+        // walker.walk()
+
+        // Создать класс Runner на основе класса Walker
+        // Класс наследует все методы и свойства Walker
+        // новые свойства:
+        // - stamina (Number | по-умолчанию 100)
+        // новые методы:
+        // - run()
+        // --- Сдвигает рендер инстанса в 3 раза дальше чем walk()
+        // новые механики:
+        // - При использовании методов walk и run должны тратиться очки stamina (10, 30)
+        // - При недостатке stamina на исполнение действия, должен осуществлятся вывод сообщения
+        //   в консоль "Sorry, Im too tired" и не выполнять никаких передвижений
+
+        class Runner extends Walker {
+            constructor(...args) {
+                super(...args);
+                this.stamina = 100;
+            }
+
+            walk() {
+                return this.moveX(this.step, 10)
+            }
+
+            run() {
+                return this.moveX(this.step * 3, 30)
+            }
+
+            moveX(distance, staminaCost) {
+                if (this.stamina >= staminaCost) {
+                    super.moveX(distance);
+                    this.stamina -= staminaCost;
+                } else {
+                    console.log('Sorry, Im too tired...')
+                }
+                return this;
+            }
+        }
+
+        const runner = new Runner(document.body, 20)
+        console.log(runner)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+.form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &-title {
+    font-weight: bold;
+    font-size: 20px;
+    color: blue;
+  }
+
+  &-item {
+    font-size: 18px;
+    margin: 8px;
+    width: 200px;
+    box-shadow: 1px 2px 3px 3px grey;
+    border-color: transparent;
+    width: 550px;
+  }
+
+}

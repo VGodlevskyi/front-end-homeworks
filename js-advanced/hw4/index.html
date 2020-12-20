@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Godlevskyi_js-adv_hw4</title>
+    <style>
+        * {
+            font-weight: bold;
+        }
+        .normalFont {
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+<script>
+    const list = document.createElement("ul");
+    document.body.append(list);
+    (async () => {
+        const res = await fetch("https://swapi.dev/api/films/");
+        const data = await res.json();
+        await data.results.forEach((item) => {
+            const film = document.createElement("li");
+            let characterList = "";
+            (async () => {
+                for (let i = 0; i < item.characters.length; i++) {
+                    const res = await fetch(item.characters[i]);
+                    const data = await res.json();
+                    const n = await data.name;
+                    characterList += ` ${n}`;
+                    if (i !== item.characters.length - 1) {
+                        characterList += ` ,`
+                    }
+                }
+                const listChar = document.createElement("li");
+                listChar.innerHTML = `<p>Characters: <span class="normalFont">${characterList}</span></p>`;
+                listChar.style.listStyle="none";
+                film.appendChild(listChar);
+            })();
+            film.innerHTML = `  <p>Episode: ${item.episode_id}</p>
+                                <p>Title: ${item.title}</p>
+                                <p>Opening_crawl: <span class="normalFont"> ${item.opening_crawl}</span></p>`;
+            list.appendChild(film);
+        })
+    })()
+</script>
+</body>
+</html>

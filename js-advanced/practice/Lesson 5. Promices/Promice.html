@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let heading = '';
+        // const promise = new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //         console.log('resolve')
+        //         heading = 'New value';
+        //         resolve('Chain complete');
+        //     }, 2000)
+        //     // setTimeout(() => {
+        //     //     reject('Error')
+        //     // }, 1000)
+        // })
+        // promise
+        //     .then((text) => {
+        //         return new Promise((res) => setTimeout(() => res(text + '!!!'), 2000))
+        //     })
+        //     .then(text => console.log(text))
+        //     .catch((err) => alert(err))
+
+
+        // console.log(heading)
+
+
+        // Создать функцию slowForm()
+        // После запуска функции, через 2 секунды, необходимо спросить у пользователя
+        // его возраст.
+        // Если возраст валиден (число от 0 до 120), то вернуть его результатом resolved
+        // Если не валиден, возвращать ошибку в reject
+
+        function slowForm() {
+            return new Promise((res, rej) => {
+                setTimeout(() => {
+                    const age = prompt('Say age:');
+                    if (!isNaN(age) && age !== null) {
+                        res(+age)
+                    } else {
+                        rej(new Error('Age is not valid'))
+                    }
+                }, 2000)
+            })
+        }
+
+        slowForm()
+            .then((age) => console.log(`User age is ${age}`))
+            .catch((err) => console.log(err.message))
+    </script>
+</body>
+
+</html>

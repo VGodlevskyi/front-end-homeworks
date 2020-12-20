@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Godlevskyi_js-adv_hw2</title>
+</head>
+<body>
+<div id="root"></div>
+<script>
+    const books = [
+        {
+            author: "Скотт Бэккер",
+            name: "Тьма, что приходит прежде",
+            price: 70
+        },
+        {
+            author: "Скотт Бэккер",
+            name: "Воин-пророк",
+        },
+        {
+            name: "Тысячекратная мысль",
+            price: 70
+        },
+        {
+            author: "Скотт Бэккер",
+            name: "Нечестивый Консульт",
+            price: 70
+        },
+        {
+            author: "Дарья Донцова",
+            name: "Детектив на диете",
+            price: 40
+        },
+        {
+            author: "Дарья Донцова",
+            name: "Дед Снегур и Морозочка",
+        }
+    ];
+
+    books.forEach((item => {
+        try {
+            checkList(item);
+
+        } catch (error) {
+            console.log("Ошибка вводных данных." + error.message);
+        }
+    }));
+
+    const listEl = document.createElement('ol');
+    const root = document.getElementById("root");
+    root.appendChild(listEl);
+    makeList(books);
+
+    function makeList(obj) {
+        obj.forEach((item) => {
+            const listChild = document.createElement("li");
+            const author = document.createElement("p");
+            const name = document.createElement("p");
+            const price = document.createElement("p");
+            listChild.innerHTML = "Книга";
+            author.innerHTML = `Имя автора: ${item.author}`;
+            name.innerHTML = `Название: ${item.name}`;
+            price.innerHTML = `Цена: ${item.price}`;
+            if (item.author !== undefined && item.name !== undefined && item.price !== undefined) {
+                listEl.appendChild(listChild);
+                listChild.append(author, name, price);
+            }
+        })
+    }
+
+    function checkList(item) {
+
+        if (!item.name) {
+            throw new SyntaxError(` Свойства name нет в книге автора ${item.author}`);
+        }
+        if (!item.author) {
+            throw new SyntaxError(` Свойства author нет в книге с названием ${item.name}`);
+        }
+        if (!item.price) {
+            throw new SyntaxError(` Свойства price нет в книге с названием ${item.name}`);
+        }
+    }
+
+</script>
+</body>
+</html>

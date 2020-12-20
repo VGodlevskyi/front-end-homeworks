@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function returnError() {
+        //     throw new Error('Error form function')
+        // }
+
+
+        // try {
+        //     const obj = {};
+        //     // obj.d.d;
+        //     const userInput = prompt('Say age');
+        //     if (isNaN(userInput)) {
+        //         throw new Error('Age is not valid');
+        //     }
+        //     // returnError();
+        // } catch (error) {
+        //     console.log(error)
+        // }
+        // returnError();
+
+
+        // function doSomething() {
+        //     try {
+        //         const pseudoJSON = [];
+        //         const data = JSON.parse(pseudoJSON);
+        //     } catch (error) {
+        //         if (error.message === "Unexpected end of JSON input") {
+        //             alert('Sorry, data invalid. Try later');
+        //         }
+        //     } finally {
+        //         console.log('Finally');
+        //     }
+        // }
+        // doSomething()
+        // console.log('We here');
+
+        // Создать функцию askUser() при запуске которой должно происходить следующее
+        // - Первый prompt должен спрашивать имя пользователя (Значение должно быть одним словом)
+        // - Второй prompt должен спросить возраст (Значение должно быть числом)
+        // - По результату двух шагов показать alert() с сообщенией `Привет, ${name}`
+        // - Если имя введено невалидно, то в консоли должна быть выведена ошибка "Wrong name"
+        //   из блока catch
+        // - Если возраст введен невалидно, то в консоли должна быть выведена ошибка "Wrong age"
+        //   из блока catch
+
+        function userAsk() {
+            try {
+                let name = prompt('u name');
+                if (name === null || name.split(" ").length !== 1) {
+                    throw new Error('wrong name');
+                }
+
+                let age = prompt('u age');
+                if (isNaN(age) || age === null) {
+                    throw new Error('wrong age');
+                }
+
+                alert(`hi, ${name}`)
+            } catch (e) {
+                console.log(e)
+            }
+        }
+
+        userAsk();
+    </script>
+</body>
+
+</html>

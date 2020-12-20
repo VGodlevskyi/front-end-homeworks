@@ -1,0 +1,30 @@
+{
+  "name": "project-xc",
+  "version": "1.0.0",
+  "description": "Vitalii Godlevskyi, FE18",
+  "main": "app.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/VGodlevskyi/front-end-homeworks.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/VGodlevskyi/front-end-homeworks/issues"
+  },
+  "homepage": "https://gitlab.com/VGodlevskyi/front-end-homeworks#readme",
+  "devDependencies": {
+    "browser-sync": "^2.26.12",
+    "eslint": "^7.6.0",
+    "gulp": "^4.0.2"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.2",
+    "moment": "^2.27.0"
+  }
+}

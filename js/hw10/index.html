@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+            integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+            crossorigin="anonymous"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>JS-HW10-GodlevskyiV</title>
+    <style>
+        .password-form {
+            display: flex;
+            flex-direction: column;
+        }
+        .input-wrapper {
+            position: relative;
+            /*width: intrinsic;*/
+            width: -moz-max-content;
+            width: -webkit-max-content;
+        }
+
+        .input-wrapper input {
+            min-width: 120px;
+            padding: 10px;
+            margin-bottom: 24px;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            right: 10px;
+            top: 12px;
+            color: grey;
+        }
+
+        .btn{
+            width: 150px;
+        }
+        .icon{
+
+        }
+    </style>
+</head>
+<body>
+<form id="form" class="password-form" action="#" type="POST">
+    <label id="label1" class="input-wrapper">
+        Ввести пароль
+        <input minlength="1" type="password" class="input"/>
+        <i id="i1" class="icon fas fa-eye icon-password"></i>
+    </label>
+    <label id="label2" class="input-wrapper">
+        Подтвердить пароль
+        <input minlength="1" type="password" class="input"/>
+        <i id="i2" class="icon fas fa-eye icon-password"></i>
+    </label>
+    <button id="buttonConfirmation" type="submit" class="btn">Подтвердить</button>
+</form>
+<script src="./js/index.js"></script>
+</body>
+</html>
+

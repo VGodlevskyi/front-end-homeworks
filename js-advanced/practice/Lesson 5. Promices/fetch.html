@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class='get-btn'>GET LIST</button>
+    <ul id="list"></ul>
+    <button class="load-more" hidden>LOAD MORE</button>
+
+    <script>
+        // fetch('https://swapi.dev/api/people/')
+        //     .then(response => response.json())
+        //     .then(data => console.log(data))
+
+        // 1. На странице должна находиться лишь кнопка с текстом "GET LIST"
+        // 2. При нажатии на кнопку, она должна исчезнуть, а на странице должен появится
+        //    список имен.
+        //    Список имен необходимо получить с помощью метода fetch по url 
+        //    "https://swapi.dev/api/people/" и после разобрать ответ. 
+        //    В полученном ответе, по ключу 'results' вы найдете список персонажей.
+        //    Вывести в каждом li списка нужно лишь значение по ключу name
+
+        const getBtn = document.querySelector('.get-btn');
+        const listEl = document.querySelector('#list');
+        const loadMoreBtn = document.querySelector('.load-more');
+        // console.log(getBtn, listEl)
+        let curPage = 0;
+
+        getBtn.addEventListener('click', function () {
+            this.hidden = true;
+            getList();
+        });
+
+        loadMoreBtn.addEventListener('click', () => {
+            getList(curPage + 1);
+        })
+
+        function getList(page = 1) {
+            fetch(`https://swapi.dev/api/people/?page=${page}`)
+                .then(d => d.json())
+                .then(data => {
+                    curPage++;
+                    loadMoreBtn.hidden = !data.next;
+                    buildList(data.results, list)
+                })
+        }
+
+        function buildList(list = [], parentEl) {
+            let items = '';
+            list.forEach(({
+                name
+            }) => items += `<li>${name}</li>`);
+            parentEl.append(...stringToDom(items));
+        }
+
+        function stringToDom(str) {
+            const div = document.createElement('div');
+            div.innerHTML = str;
+            return div.children;
+        }
+
+        // Дополнить текущую логику следующим:
+        // 1. Вместе с появлением списка, под ним должна появится кнопка "LOAD MORE"
+        //    (Если есть еще элементы для получения)
+        // 2. По нажатию на "LOAD MORE", необходимо загружать следующие 10 элементов
+        //    и добавлять их к текущему списку.
+        // 3. Если в списке находятся все доступные элементы, кнопку "LOAD MORE"
+        //    необходимо скрывать.
+    </script>
+</body>
+
+</html>

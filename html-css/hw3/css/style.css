@@ -1,0 +1,207 @@
+* {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px;
+}
+
+::after,
+::before{
+    box-sizing: border-box;
+}
+
+.page-background {
+    background: url("../img/");
+    background-size: cover;
+    padding: 50px 0 15px 0;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.container {
+    width: 1026px;
+    margin: 0 auto;
+}
+
+.header {
+    margin-bottom: 27px;
+}
+
+.header-left-logo {
+    margin-top: 6px;
+    display: inline-block;
+    float: left;
+}
+
+.header-left-logo:hover img {
+    content: url("../img/logo hover.png");
+}
+
+.header-left-logo:hover .logo-milan{
+    font-weight: normal;
+}
+.header-left-logo:hover .logo-holidays{
+    font-weight: normal;
+}
+
+/*свойства заголовка*/
+.logo-image {
+    width: 53px;
+    height: 47px;
+    display: inline-block;
+}
+
+.header-right-contacts {
+    float: right;
+    width: 200px;
+}
+
+.contacts-e-mail:hover, .contacts-phone:hover {
+    font-weight: bold;
+}
+
+.contacts-e-mail {
+    float: right;
+    margin-bottom: 10px;
+}
+
+.contacts-phone {
+    float: right;
+}
+
+.logo-milan {
+    font-weight: bold;
+    font-size: 29px;
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+.logo-holidays {
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    text-transform: uppercase;
+}
+
+.tour-item {
+    float: left;
+    display: inline-block;
+    margin-bottom: 42px;
+    margin-right: 62px;
+}
+
+/*убираем ненужный марджин*/
+.tour-item:nth-child(3n) {
+    margin-right: 0;
+}
+
+/*определяем размеры блоков туров*/
+.tour-item-img {
+    width: 300px;
+    height: 220px;
+}
+
+.tour-item-details {
+    vertical-align: bottom;
+    width: 100%;
+    display: inline-block;
+    margin-top: 152px;
+    padding: 10px 0 15px;
+    background: #F26522;
+    color: white;
+    z-index: -1;
+    visibility: hidden;
+}
+
+.details-price {
+    margin-left: 16px;
+    margin-top: 6px;
+    font-size: 20px;
+    display: inline-block;
+    color: white;
+}
+
+.details-price::before {
+    content: 'from';
+    display: block;
+    padding-bottom: 7px;
+    font-size: 10px;
+    color: white;
+}
+
+.details-view {
+    font-size: 14px;
+    margin-top: 25px;
+    float: right;
+    display: inline-block;
+    color: white;
+}
+
+.details-view::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    margin: auto 10px auto 42px;
+    border: 1px solid white;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    transform: rotate(45deg);
+    display: inline-block;
+}
+
+/*Описания туров под картинками*/
+.tour-item-description {
+    text-align: center;
+    margin-top: 17px;
+}
+
+/*ХОВЕРЫ*/
+/*Группа ховеров для перкрашивания текста в оранжевый*/
+.header-left-logo:hover .logo-milan,
+.header-left-logo:hover .logo-holidays,
+.contacts-e-mail:hover,
+.contacts-phone:hover,
+a.tour-item:hover .tour-item-description {
+    color: #F26522;
+}
+
+.tour-item:hover .tour-item-details {
+    z-index: 0;
+    visibility: visible;
+}
+
+/*Фото картинок туров реализованы как background */
+.tour-shopping {
+    background: url("../img/shopping tours.png");
+}
+
+.tours-sightseeing {
+    background: url("../img/sightseeing Tours.png");
+}
+
+.tours-food {
+    background: url("../img/food Tours.png");
+}
+
+.tours-bars {
+    background: url("../img/bars & Nightlife.png");
+}
+
+.tours-art {
+    background: url("../img/art & architecture.png");
+}
+
+.tours-walking {
+    background: url("../img/walking Tours.png");
+}
+
+.copyright {
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.clearfix::after {
+    content: '';
+    clear: both;
+    display: block;
+    height: 0;
+}

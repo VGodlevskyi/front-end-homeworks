@@ -1,0 +1,172 @@
+* {
+    font-family: 'Arimo', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #484848;
+    margin: 0 auto;
+}
+
+::after,
+::before {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Arimo';
+    src: local('Arimo'), url('../fonts/arimo.woff2') format('woff2'), url('../fonts/arimo.woff') format('woff'), url('../fonts/arimo.ttf') format('truetype'), url('../fonts/Arimo.eot') format('eot'), url('../fonts/Arimo.svg') format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Arimo';
+    src: local('Arimo Bold'), local('Arimo-Bold'), url('../fonts/arimobold.woff2') format('woff2'), url('../fonts/arimobold.woff') format('woff'), url('../fonts/Arimo-Bold.eot') format('eot'), url('../fonts/arimobold.ttf') format('truetype'), url('../fonts/Arimo Bold.svg') format('svg');
+    font-weight: 700;
+    font-style: normal;
+}
+
+.table {
+    width: 1192px;
+    border: 22px solid #3A4965;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.title-cell {
+    width: 313px;
+    background: #FAFAFA;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.title-cell-pricing-plan {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.first-line-head {
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+
+.second-line-head {
+    background: #FAFAFA;
+}
+
+.price {
+    font-size: 60px;
+    position: relative;
+    padding: 20px 136px 0 35px;
+}
+
+.cents {
+    font-size: 24px;
+    position: absolute;
+    bottom: 40px;
+}
+
+.per-month {
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    bottom: 20px;
+}
+
+.green-cell {
+    background: #89C331;
+    color: #FFFFFF;
+    font-size: 24px;
+}
+
+.column {
+    width: 280px;
+}
+
+.red-cell {
+    background: #F04A56;
+    color: #FFFFFF;
+    font-size: 28px;
+}
+
+.aquamarine-cell {
+    background: #20807C;
+    color: #FFFFFF;
+    font-size: 24px;
+}
+
+.line-body {
+    background: #F2F2F2;
+}
+
+.item-body{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.line-body:nth-of-type(2n) {
+    background: #E3E3E3;
+}
+
+.icons {
+    color: #848484;
+    font-size: 24px;
+    margin-right: 18px;
+}
+
+.item-footer {
+    height: 109px;
+    background: #DDDDDD;
+}
+
+.item-footer:nth-of-type(2n) {
+    background: #EEEEEE;
+}
+
+.item-footer:nth-of-type(3n) {
+    background: #F4F4F4;
+}
+
+.button-contact-us {
+    color: #ffffff;
+    background: #484848;
+    padding: 13px 32px;
+    border-radius: 6px;
+    border-color: transparent;
+    font-weight: bold;
+    font-size: 16px;
+    position: relative;
+}
+
+.button-buy-now {
+    padding: 12px 45px;
+    border-radius: 6px;
+    border-color: transparent;
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+}
+.title-button{
+    color: #ffffff;
+}
+.title-button::before {
+    content: '';
+    width: 171px;
+    height: 10px;
+    border-radius: 0 0  6px 6px;
+    display:inline-block;
+    bottom: -2px;
+    left: -2px;
+    background-color: #C4C4C4;
+    opacity: 0.15;
+    position: absolute;
+    }
+
+.button-contact-us:hover, .button-buy-now:hover {
+    transition: transform 1s;
+    transform: scale(1.1);
+}
+
+.title-cell, .second-line-head, .item-body {
+    border-right: 1px solid #dbdbdb;
+}

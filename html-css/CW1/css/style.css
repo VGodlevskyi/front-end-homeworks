@@ -1,0 +1,44 @@
+::before, ::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 30px;
+    margin: 0;
+}
+
+.some-grid {
+    display: grid;
+    padding-left: 0;
+    margin: 20px;
+    list-style: none;
+grid-gap: 20px;
+    /*grid-auto-flow: column;*/
+    /*grid-template-rows: 200px;*/
+    /*grid-template-columns: 200px 1fr 1fr 2fr ;*/
+    grid-template-columns: repeat(2, 1fr 1fr 100px); /*fr=(100%-200-200)/2 */
+    /*grid-template-columns: repeat(auto-fill, minmax(20px, 1fr));*/
+}
+
+.header, .footer {
+    background-color: #F26522;
+    /*height: 200px;*/
+}
+
+.body-wrapper {
+    height: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: 100px 1fr 100px;
+    grid-template-columns: 200px 1fr;
+    grid-template-areas: "header header" "sidebar main" "footer footer"
+}
+.header {
+    grid-area: header;
+}
+.footer{
+    grid-area: footer;
+}
+.sidebar{
+    grid-area: sidebar;
+}

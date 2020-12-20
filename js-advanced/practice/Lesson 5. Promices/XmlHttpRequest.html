@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function getData(url) {
+            return new Promise((res) => {
+                const xhr = new XMLHttpRequest();
+
+                // xhr.onprogress = (e) => console.log(e);
+                // xhr.onreadystatechange = () => {
+                //     console.log(xhr.readyState, xhr.response);
+                // }
+                xhr.open('GET', url);
+                xhr.send();
+
+                xhr.onload = () => {
+                    res(JSON.parse(xhr.response))
+                }
+            })
+        };
+
+        // getData(url)
+        // функция должна принимать url и возвращать промисс, в then которого 
+        // будет получен ответ с сервера в формате объекта
+
+        // Пример 
+        // getData('https://swapi.dev/api/people/1/')
+        //    .then(data => console.log(data.name)) // "Luke Skywalker"
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Form(parentEl, fields = {}, onSubmit = () => {}) {
+            this.formEl = document.createElement('form');
+            this.fields = {};
+
+            this.submitBtn = document.createElement('button')
+            this.submitBtn.type = 'submit';
+            this.submitBtn.innerText = 'SEND'
+            this.formEl.appendChild(this.submitBtn);
+
+            for (let name in fields) {
+                this.addField(name);
+            }
+
+            this.formEl.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const values = {};
+                for (let name in this.fields) {
+                    values[name] = this.formEl.elements[name].value
+                }
+                onSubmit(values);
+            })
+
+            parentEl.appendChild(this.formEl);
+        }
+
+        Form.prototype.addField = function (name) {
+            if (!(name in this.fields)) {
+                let field = document.createElement('input');
+                field.name = name;
+                field.type = 'text';
+                this.formEl.insertBefore(field, this.submitBtn);
+                this.fields[name] = '';
+            }
+        }
+
+        Form.prototype.removeField = function (name) {
+            if (name in this.fields) {
+                let field = this.formEl.querySelector(`[name="${name}"]`);
+                field.remove();
+                delete this.fields[name];
+            }
+        }
+
+        const firstForm = new Form(
+            document.body, {
+                email: '',
+                password: ''
+            },
+            (values) => console.log(values)
+        )
+
+        firstForm.addField('name')
+        firstForm.addField('email')
+
+        const secondForm = new Form(
+            document.body, {
+                name: '',
+                surname: '',
+                age: ''
+            },
+            (values) => {
+                for (let field in values) {
+                    alert(`field = ${values[field]}`)
+                }
+            }
+        )
+    </script>
+</body>
+
+</html>

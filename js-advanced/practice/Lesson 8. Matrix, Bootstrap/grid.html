@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid</title>
+
+    <style>
+        .cell {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('./img/grass.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .cell[data-visited] {
+            background-image: url('./img/box.jpg');
+        }
+
+        .cell[data-coin]::before {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            top: 25%;
+            left: 25%;
+            background-image: url('./img/coin.gif');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .character {
+            width: 80px;
+            height: 80px;
+            background-image: url('./img/creature.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    </style>
+
+    <style>
+        .row {
+            display: flex;
+        }
+
+        .col-50 {
+            width: 50%;
+        }
+
+        .col-33 {
+            width: calc(100% / 3);
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <script src="grid.js"></script>
+</body>
+
+</html>

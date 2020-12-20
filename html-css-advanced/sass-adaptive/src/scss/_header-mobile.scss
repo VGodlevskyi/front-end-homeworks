@@ -1,0 +1,48 @@
+.navbar {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+.navbar-wrap {
+	@media (max-width: 1200px) {
+		&--active {
+			display: flex;
+		}
+	}
+}
+.menu-mobile {
+	display: none;
+	@media (max-width: 1200px) {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		width: 30px;
+		height: 30px;
+		background-color: transparent;
+		cursor: pointer;
+		&__hr {
+			@include menu-hr;
+			&::after,
+			&::before {
+				display: block;
+				content: "";
+				@include menu-hr;
+			}
+			&::before {
+				margin-bottom: 5px;
+				margin-top: 5px;
+			}
+			&::after {
+				margin-bottom: 5px;
+				margin-top: 5px;
+			}
+		}
+	}
+}
+
+.navbar-wrap {
+	@media (max-width: 1200px) {
+		display: none;
+	}
+}

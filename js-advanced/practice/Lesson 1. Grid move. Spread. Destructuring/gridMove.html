@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Move</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #root {
+            width: 502px;
+            height: 502px;
+            display: flex;
+            flex-wrap: wrap;
+            border: 1px solid black;
+        }
+
+        .cell {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+
+        .player {
+            width: 70px;
+            height: 70px;
+            background-color: black;
+            border-radius: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div id="root">
+        </div>
+    </div>
+
+    <script>
+        const grid = document.querySelector('#root');
+        const player = document.createElement('div');
+        player.className = 'player';
+        let playerPosition = -1;
+
+        let isGameStarted = false;
+
+        for (let i = 0; i < 25; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'cell';
+            cell.dataset.index = i;
+            grid.appendChild(cell);
+        }
+
+        grid.addEventListener('click', function (e) {
+            if (e.target.classList.contains('cell')) {
+                const cell = e.target;
+                const cellIndex = cell.dataset.index;
+
+                if (!isGameStarted) {
+                    cell.appendChild(player);
+                    playerPosition = cellIndex;
+                    isGameStarted = true;
+                } else {
+                    const shifts = [-6, -5, -4, -1, 1, 4, 5, 6];
+                    console.log(cellIndex, playerPosition)
+                    for (let shift of shifts) {
+                        if (+cellIndex + shift == playerPosition) {
+                            cell.appendChild(player);
+                            playerPosition = cellIndex;
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <script>
+        let userOne = {
+            name: 'John',
+            sayName: function () {
+                // console.log(this.name);
+                // const self = this;
+                alert(this.name);
+
+                const alertName = () => {
+                    alert(this.name);
+                };
+
+                return alertName
+            }
+        }
+
+        let userTwo = {
+            name: 'Sara',
+            sayName: userOne.sayName
+        };
+
+        // userTwo.sayName();
+
+        const listItems = document.querySelectorAll('li');
+        console.log(listItems);
+
+        // const fillListItems = [].forEach.bind(listItems);
+
+        function sum(a, b) {
+            return a + b;
+        };
+
+        const increaseByTen = sum.bind(null, 10);
+
+        // const value1 = increaseByTen(+prompt('say num'))
+        // const value2 = increaseByTen(+prompt('say num'))
+        // const value3 = increaseByTen(+prompt('say num'))
+
+        // console.log(value1, value2, value3);
+    </script>
+</body>
+
+</html>

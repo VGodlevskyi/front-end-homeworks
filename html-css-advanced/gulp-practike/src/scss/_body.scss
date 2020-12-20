@@ -1,0 +1,35 @@
+.page-body {
+  margin: 0;
+  // padding: 50px 100px;
+  padding: 0 15px;
+  background-color: $body-bgd-color;
+  font-size: 16px;
+}
+.contact-form__element {
+  width: 100%;
+  @media (min-width: 1024px) {
+    width: 30%;
+  }
+}
+.contact-form {
+  background-color: lawngreen;
+  @media (min-width: 1024px) {
+    background-color: transparent;
+  }
+}
+// @media (max-width: 1024px) {
+// 	.contact-form {
+// 		// display: none;
+// 		background-color: lawngreen;
+// 	}
+// 	.contact-form__element {
+// 		width: 100%;
+// 	}
+// }
+.contact-form__text-block {
+  height: 300px;
+  overflow-y: auto;
+}
+.img:hover{
+  content:"https://visit2austria.com/wp-content/uploads/2017/07/strip_summer_skiing_tignes_3_51916-e1582581828755.jpg"
+}

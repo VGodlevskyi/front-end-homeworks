@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function createCounter() {
+            let value = 0;
+
+            return {
+                getValue() {
+                    return value;
+                },
+                increaseValue() {
+                    return ++value;
+                }
+            }
+        }
+
+        const counter = createCounter();
+        console.log(counter.getValue());
+        counter.increaseValue();
+        counter.increaseValue();
+        counter.increaseValue();
+        console.log(counter.getValue());
+
+        // Создать функцию createGrownList()
+        // Внутри фунции, при вызове, должна создаваться переменная list с пустым массивом
+        // При вызове функция должна вернуть объект с методами getList и addValue
+        // Вызов метода getList должен возвращать копию массива из переменной list
+        // Вызов метода addValue должен принимать аргументом число и добавлять его в массив
+        // list, только при условии что массив пуст или последнее значение меньше нового.
+        // В обратном случае должен выводится alert('This value is lower than last')
+
+        function createGrownList() {
+            const list = [];
+
+            return {
+                getList() {
+                    return [...list];
+                },
+                addValue(value) {
+                    if (!list.length || list[list.length - 1] < value) {
+                        list.push(value)
+                    } else {
+                        alert('This value is lower than last')
+                    }
+                }
+            }
+        }
+
+        // Tests:
+        const firstList = createGrownList();
+        firstList.addValue(1) // true
+        firstList.addValue(2) // true
+        firstList.addValue(3) // true
+        firstList.addValue(1) // Alert
+        const createdList = firstList.getList() // [1,2,3]
+        console.log(createdList)
+        createdList.push(2)
+        console.log(firstList.getList()) // [1,2,3]
+    </script>
+</body>
+
+</html>

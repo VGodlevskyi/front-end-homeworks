@@ -1,0 +1,94 @@
+//.container{
+//  display: flex;
+//  justify-content: center;
+//  //спасиба што включил свет папа
+//}
+
+
+.header {
+  &-wrapper {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: dodgerblue;
+  }
+
+  &__company-logo {
+    font-size:  30px;
+    font-weight: bold;
+    color: blue;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+
+    &:hover {
+      box-shadow: 0 0 0 5px white;
+    }
+  }
+
+  &__nav {
+
+    &-list {
+      width: 50%;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+    }
+
+    &-link {
+      cursor: pointer;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 18px;
+      color: black;
+      transition: text-shadow 0.3s;
+
+      &:hover {
+        text-shadow: 0 0 5px white;
+      }
+      &-selected{
+        font-weight: bold;
+    }
+    }
+
+  }
+
+  &__login-btn {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: white;
+    padding: 10px 20px;
+    background-color: lightblue;
+    box-shadow: 0 0 2px 0 lightgray;
+  }
+}
+
+.login {
+  max-width: 450px;
+  margin: 100px auto;
+  width: 100%;
+  box-shadow: 0 0 5px 0 lightgray;
+  padding: 35px 45px;
+  display: flex;
+  flex-direction: column;
+
+  &__input {
+    outline: none;
+    border: none;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 0 1px lightgray;
+  }
+}

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- FORM -->
+    <form action="">
+        <input type="text" name="title">
+        <textarea name="text" cols="30" rows="10"></textarea>
+        <button type="submit">CREATE</button>
+    </form>
+    <!-- NOTES -->
+    <h3>NOTES</h3>
+    <ul id="notes">
+        <!-- <li>
+            <h5>First</h5>
+            <p>Do something</p>
+            <button>delete</button>
+        </li> -->
+    </ul>
+
+    <script>
+        // Создать следующий функционал
+        // 1. При попытке отправки формы, асинхронно создавать заметку на локальном сервере
+        //    по endpoint "/notes"
+        //    Структура заметки: {title: 'Title', text: 'Text'}
+        // 2. При загрузке страницы, асинхронно получать список заметок и отрисовывать их
+        //    в блоке ul#notes (структура в примере выше)
+        // 3. При создании заметки через форму, она должна появляться в блоке ul#notes
+        //    без перезагрузки страницы. 
+        const notesURL = 'http://localhost:3000/notes';
+        const form = document.querySelector('form');
+        const list = document.querySelector('#notes');
+
+        // Listen for form submit
+        form.addEventListener('submit', function (e) {
+            // prevent default form reloading of page
+            e.preventDefault();
+            // Define values from form fields
+            const title = this.elements.title.value;
+            const text = this.elements.text.value;
+            // Check for empty fields
+            if (title.trim() && text.trim()) {
+                // Send data to server
+                fetch(notesURL, {
+                    // POST because we want create
+                    method: 'POST',
+                    headers: {
+                        // Requirement from server / our body data format
+                        'Content-Type': 'application/json'
+                    },
+                    // Set which data we send
+                    body: JSON.stringify({
+                        title,
+                        text
+                    })
+                }).then(res => {
+                    // Check what data successfully created
+                    if (res.status === 201) {
+                        return res.json()
+                    } else {
+                        return res.text()
+                    }
+                }).then(data => {
+                    // json-server return for us created item obj
+                    // in case of success, so we check id, to be sure
+                    // what all is ok & we able to create DOM element
+                    if (data.id) {
+                        list.appendChild(createListItemDOM(data));
+                    } else {
+                        console.log(data)
+                    }
+                })
+            } else {
+                alert('Fill all fields')
+            }
+        })
+
+
+        async function getNotes() {
+            // Make get request for notes
+            const res = await fetch(notesURL);
+            // parse data from json
+            const notes = await res.json();
+            // add each note in array to our list
+            // using our special template function
+            notes.forEach(element => {
+                list.appendChild(createListItemDOM(element))
+            });
+        }
+        getNotes()
+
+        // Function which takes obj & search for keys 'title', 'text'
+        // then create li element with heading & paragraph with
+        // that text content of single note 
+        function createListItemDOM({
+            id,
+            title = '',
+            text = ''
+        }) {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <h5>${title}</h5>
+                <p>${text}</p>
+                <button data-delete="${id}">delete</button>
+            `;
+            return li
+        }
+
+
+        // 4. Реализовать логику удаления заметки:
+        //  - в шаблон заметки необходимо добавить button с текстом "delete"
+        //  - при нажатии на кнопку, должно происходить удаление элемента заметки
+        //    из DOM, а так же с базы данных (Запрос DELETE на /notes/${id})
+
+        list.addEventListener('click', async (e) => {
+            if (e.target.dataset.delete) {
+                const isDeleted = await deleteNoteFromServer(e.target.dataset.delete)
+                if (isDeleted) e.target.closest('li').remove();
+            }
+        })
+
+        async function deleteNoteFromServer(id) {
+            const res = await fetch(`${notesURL}/${id}`, {
+                method: 'DELETE'
+            });
+            const answer = await res.json();
+            if (!answer.length) {
+                return true;
+            }
+            return false
+        }
+    </script>
+
+</body>
+
+</html>
