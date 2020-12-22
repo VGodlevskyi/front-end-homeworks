@@ -1,4 +1,4 @@
-export const SERVER_URL = 'http://localhost:3008/api/v1/';
+export const SERVER_URL = 'http://localhost:3029/api/v1/';
 
 export default class CoreService {
     request(url, params) {
