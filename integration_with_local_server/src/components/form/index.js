@@ -1,10 +1,13 @@
 import {useState} from 'react';
 
-export default function ProductForm({onSubmit}) {
-    const [data, setData] = useState({
-        price: 0,
-        title: ''
-    });
+const initialProductStat = {
+    id: null,
+    price: 0,
+    title: ''
+}
+
+export default function ProductForm({product = initialProductStat, onSubmit}) {
+    const [data, setData] = useState(product);
 
     const onSubmitForm = (e) => {
         e.preventDefault();

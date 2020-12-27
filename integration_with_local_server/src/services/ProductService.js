@@ -1,11 +1,5 @@
 import CoreService from "./CoreService";
 
-// export default class ProductService{
-//     static getProducts(){
-//         return fetch('http://localhost:3029/api/v1/products')
-//             .then(response => response.json());
-//     }
-// }
 export default class ProductService extends CoreService {
     constructor() {
         super();
@@ -18,6 +12,13 @@ export default class ProductService extends CoreService {
 
     async createProduct({title, price}) {
         return this.postRequest(this.url, {
+            title,
+            price
+        });
+    }
+
+    async editProduct({id, title, price}) {
+        return this.putRequest(`${this.url}/${id}`, {
             title,
             price
         });
